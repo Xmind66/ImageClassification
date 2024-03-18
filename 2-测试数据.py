@@ -4,14 +4,16 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from shutil import copy2
 
+
 # 加载模型
 model = load_model('screenshot_classifier.keras')
 
 # 待检测的文件夹路径
-source_folder = 'path_to_the_folder_with_images_to_classify'
+# source_folder = r'Data\test'
+source_folder = r'data\test'
 
 # 结果保存的文件夹路径
-result_folder = 'path_to_the_folder_to_save_results'
+result_folder = r'Data\test2'
 
 # 定义两个类别的文件夹名称
 class_a_folder = 'class_a'
@@ -25,7 +27,7 @@ os.makedirs(os.path.join(result_folder, class_b_folder), exist_ok=True)
 for subdir, dirs, files in os.walk(source_folder):
     for file in files:
         # 检查文件是否为图片（这里只检查了几种常见的图片格式）
-        if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+        if file.lower().endswith(('.png', '.jpg', '.jpeg')):
             img_path = os.path.join(subdir, file)
 
             # 加载和预处理图片
