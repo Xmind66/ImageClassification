@@ -8,9 +8,13 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense
 from tensorflow.keras.optimizers import Adam
 
+import time
+start_time = time.time()
+
 # 假设您想使用第一个 GPU，其编号为1
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 
 img_width, img_height = 150, 150  # 图片尺寸
 train_data_dir = 'data/train'  # 训练集数据目录
@@ -77,7 +81,6 @@ model.fit(
     validation_steps=nb_validation_samples // batch_size)
 
 # 保存模型
-#model.save('screenshot_classifier.h5')
 model.save('screenshot_classifier.keras')
 
 # 绘制训练 & 验证的准确率值
@@ -96,3 +99,10 @@ plt.title('Training and Validation Loss')
 plt.legend()
 
 plt.show()
+
+
+end_time = time.time()
+# 计算运行时间
+total_time = end_time - start_time
+# 打印总运行时间
+print(f"总运行时间: {total_time} 秒")
