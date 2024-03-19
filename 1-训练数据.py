@@ -102,5 +102,3 @@ plt.plot(model.history.history['val_loss'], label='Validation Loss')
 plt.title('Training and Validation Loss')
 plt.legend()
 plt.show()
-
-
