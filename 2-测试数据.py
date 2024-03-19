@@ -51,4 +51,4 @@ for subdir, dirs, files in os.walk(source_folder):
             copy2(img_path, destination)
             print(f"Copied {file} to {destination}")
 
-print("Classification and copying of images is complete.")
+print("分类完成。")
