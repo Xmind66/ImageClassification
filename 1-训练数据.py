@@ -11,9 +11,9 @@ from tensorflow.keras.optimizers import Adam
 import time
 start_time = time.time()
 
-# 假设您想使用第一个 GPU，其编号为1
-os.environ["CUDA_VISIBLE_DEVICES"] = '1'
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+# 假设您想使用 GPU1
+# os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+# os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 
 img_width, img_height = 150, 150  # 图片尺寸
@@ -47,7 +47,6 @@ model.add(Dense(1))
 model.add(Activation('sigmoid'))
 
 model.compile(loss='binary_crossentropy',
-              #optimizer=Adam(lr=0.0001),
               optimizer = Adam(learning_rate=0.0001),
               metrics=['accuracy'])
 
@@ -82,6 +81,11 @@ model.fit(
 
 # 保存模型
 model.save('screenshot_classifier.keras')
+end_time = time.time()
+# 计算运行时间
+total_time = end_time - start_time
+# 打印总运行时间
+print(f"总运行时间: {total_time} 秒")
 
 # 绘制训练 & 验证的准确率值
 plt.figure(figsize=(8, 4))
@@ -97,12 +101,6 @@ plt.plot(model.history.history['loss'], label='Training Loss')
 plt.plot(model.history.history['val_loss'], label='Validation Loss')
 plt.title('Training and Validation Loss')
 plt.legend()
-
 plt.show()
 
 
-end_time = time.time()
-# 计算运行时间
-total_time = end_time - start_time
-# 打印总运行时间
-print(f"总运行时间: {total_time} 秒")
