@@ -1,7 +1,4 @@
-
-import sys
-import re
-import os
+import sys,os,re
 
 class WechatImageDecoder:
     def __init__(self, dat_file):
